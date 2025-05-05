@@ -75,9 +75,12 @@ public class Jeu {
 
     public void JouerPartieManuel(Joueur joueur) {
         Scanner s = new Scanner(System.in);
+        System.out.println("Quelle porte voulez vous choisir ? ( 1, 2, 3, ...)");
+        int indexPorte = s.nextInt();
+        Partie partie = new Partie();
 
-        System.out.println();
-        String s1 = s.nextLine();
+        Porte porteIndex = partie.getListePortes().get(indexPorte - 1);
+        System.out.println("L'animateur ouvre la porte numéro " + "" + ", il n'y a rien derrière");
 
     }
     public static void main(String[] args) {
