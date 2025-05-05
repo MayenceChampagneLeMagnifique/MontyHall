@@ -23,10 +23,9 @@ public class Jeu {
 
         String reponse = s.nextLine();
 
-        Joueur joueur = new Joueur();
         System.out.println("Quel est votre nom ?");
         String nom = s.nextLine();
-        joueur.setNom(nom);
+        Joueur joueur = new Joueur(nom);
 
         if (reponse.equalsIgnoreCase("M")){
             JouerPartieManuel(joueur);

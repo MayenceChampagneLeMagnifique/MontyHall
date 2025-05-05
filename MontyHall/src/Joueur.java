@@ -5,13 +5,12 @@
 public class Joueur {
 
     private String nom;
-    private int nombreDePartiesAJouer;
+    private int nombreDePartiesJouees;
     private double pourcentagePartiesGagnees;
     private double pourcentageChangementDePortes;
 
-    public Joueur(String nom, int nombreDePartiesAJouer) {
+    public Joueur(String nom) {
         setNom(nom);
-        setNombreDePartiesAJouer(nombreDePartiesAJouer);
     }
 
     public String getNom() {
@@ -22,12 +21,12 @@ public class Joueur {
         this.nom = nom;
     }
 
-    public int getNombreDePartiesAJouer() {
-        return nombreDePartiesAJouer;
+    public int getNombreDePartiesJouees() {
+        return nombreDePartiesJouees;
     }
 
-    public void setNombreDePartiesAJouer(int nombreDePartiesAJouer) {
-        this.nombreDePartiesAJouer = nombreDePartiesAJouer;
+    public void setNombreDePartiesJouees(int nombreDePartiesJouees) {
+        this.nombreDePartiesJouees = nombreDePartiesJouees;
     }
 
     public double getpourcentageChangementDePortes() {
@@ -40,6 +39,6 @@ public class Joueur {
 
     @Override
     public String toString() {
-        return "Joueur :" + getNom() + ". Nombre de parties jouées : " + nombreDePartiesAJouer + ". Pourcentage de parties gagnées : " + pourcentagePartiesGagnees + ". Pourcentage de changement de portes : " + pourcentageChangementDePortes + ".";
+        return "Joueur :" + getNom() + ". Nombre de parties jouées : " + nombreDePartiesJouees + ". Pourcentage de parties gagnées : " + pourcentagePartiesGagnees + ". Pourcentage de changement de portes : " + pourcentageChangementDePortes + ".";
     }
 }
