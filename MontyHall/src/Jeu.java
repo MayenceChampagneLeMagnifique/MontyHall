@@ -75,31 +75,55 @@ public class Jeu {
 
     public void JouerPartieManuellement(Joueur joueur) {
         Scanner s = new Scanner(System.in);
-        System.out.println("Quelle porte voulez vous choisir ? ( 1, 2, 3, ...)");
+        System.out.println("Quelle porte voulez vous choisir ? ( 0, 1, 2, ...)");
         int indexPorte = s.nextInt();
         Partie partie = new Partie();
 
-        Porte porteIndex = partie.getListePortes().get(indexPorte - 1);
         int indexGagnant = partie.getPorteGagnante();
 
         Random r = new Random();
-        int rand = r.nextInt(1);
-        int porteChoisiParAnimateur;
+        int rand = r.nextInt(2);
+        int porteChoisiParAnimateur = 0;
+        int porteDisponible = 0;
 
-        switch(indexGagnant){
+        switch (indexGagnant) {
             case 0:
-                if (rand == 0){
+                if (rand == 0) {
                     porteChoisiParAnimateur = 1;
                 } else porteChoisiParAnimateur = 2;
+                break;
             case 1:
-
-
+                if (rand == 0) {
+                    porteChoisiParAnimateur = 0;
+                } else porteChoisiParAnimateur = 2;
+                break;
             case 2:
-
+                if (rand == 0) {
+                    porteChoisiParAnimateur = 0;
+                } else porteChoisiParAnimateur = 1;
+                break;
         }
-        System.out.println("L'animateur ouvre la porte numéro " + "" + ", il n'y a rien derrière");
+
+        if (porteChoisiParAnimateur == 1 && indexPorte == 0) {
+            porteDisponible = 2;
+        } else if (porteChoisiParAnimateur == 2 && indexPorte == 0) {
+            porteDisponible = 1;
+        } else if (porteChoisiParAnimateur == 0 && indexPorte == 1) {
+            porteDisponible = 2;
+        }else if (porteChoisiParAnimateur == 2 && indexPorte == 1) {
+            porteDisponible = 0;
+        }else if (porteChoisiParAnimateur == 0 && indexPorte == 2) {
+            porteDisponible = 1;
+        }else if (porteChoisiParAnimateur == 1 && indexPorte == 2) {
+            porteDisponible = 0;
+        }
+        System.out.println("Debug Gagnant: " + indexGagnant);
+        System.out.println("L'animateur ouvre la porte numéro " + porteChoisiParAnimateur + ", il n'y a rien derrière");
+        System.out.println("Voulez vous changez votre porte pour la porte numéro " + porteDisponible + " ? ou gardez votre porte " + indexPorte + " ?");
+        String reponse = s.nextLine();
 
     }
+
     public static void main(String[] args) {
         Jeu jeu = new Jeu();
         jeu.lancerPartie();
