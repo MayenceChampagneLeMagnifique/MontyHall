@@ -13,7 +13,7 @@ public class Jeu {
 
     private List<Partie> listeParties = new ArrayList();
 
-    public void lancerPartie() {
+    public Jeu() {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Bienvenue au problème de Monty Hall !" + "\n");
@@ -36,7 +36,7 @@ public class Jeu {
             System.out.println("Quel est votre nom ?");
             String nom = s.nextLine();
             Joueur joueur = new Joueur(nom);
-            JouerPartieManuellement(joueur);
+            jouerPartieManuellement(joueur);
         }
 
         if (reponse.equalsIgnoreCase("A")) {
@@ -44,7 +44,7 @@ public class Jeu {
         }
     }
 
-    public void ExporterParties(String path) {
+    public void exporterParties(String path) {
         try {
             PrintWriter fichier = new PrintWriter(new FileWriter(path));
             for (Partie partie : listeParties) {
@@ -63,7 +63,7 @@ public class Jeu {
 //
 //    }
 
-    public void JouerPartiesAuto(Joueur joueur, int nombreParties) {
+    public void jouerPartiesAuto() {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Combien de fois sur 100 voulez vous changer de porte si la première est vide ?");
@@ -78,7 +78,7 @@ public class Jeu {
 
     }
 
-    public void JouerPartieManuellement(Joueur joueur) {
+    public void jouerPartieManuellement(Joueur joueur) {
         Scanner s = new Scanner(System.in);
         System.out.println("Quelle porte voulez vous choisir ? ( 1, 2, 3, ...)");
         int indexPorte = s.nextInt();
@@ -106,9 +106,7 @@ public class Jeu {
 
     }
     public static void main(String[] args) {
-        Jeu jeu = new Jeu();
-        jeu.lancerPartie();
-
+        new Jeu();
     }
 }
 
