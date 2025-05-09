@@ -10,6 +10,7 @@ public class Partie {
     private final int NOMBRE_PORTES = 3;
     private List<Porte> listePortes = new ArrayList<>();
     private static final Prix PRIX_DEFAUT = Prix.AUCUN_PRIX;
+    private int porteGagnante;
 
     public Partie() {
         creerPortes();
@@ -22,13 +23,15 @@ public class Partie {
             listePortes.add(new Porte(PRIX_DEFAUT));
         }
 
-        listePortes.get(r.nextInt(NOMBRE_PORTES)).setPrix(Prix.VOITURE);
+        porteGagnante = r.nextInt(NOMBRE_PORTES);
+
+        listePortes.get(porteGagnante).setPrix(Prix.VOITURE);
     }
 
     public List<Porte> getListePortes() {
         return listePortes;
-    }
 
+}
     public int getNOMBRE_PORTES() {
         return NOMBRE_PORTES;
     }
