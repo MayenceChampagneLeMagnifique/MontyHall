@@ -31,6 +31,7 @@ public class Jeu {
         String reponse = s.nextLine();
 
 
+
         if (reponse.equalsIgnoreCase("M")) {
             System.out.println("Quel est votre nom ?");
             String nom = s.nextLine();
@@ -81,13 +82,6 @@ public class Jeu {
         Scanner s = new Scanner(System.in);
         System.out.println("Quelle porte voulez vous choisir ? ( 0, 1, 2, ...)");
         int indexPorte = s.nextInt();
-//        do {
-//
-//            if (indexPorte >= 0 && indexPorte <= 2){
-//                System.out.println("Vous n'avez pas entrer");
-//            }
-//        } while (indexPorte >= 0 && indexPorte <= 2);
-
         Partie partie = new Partie();
 
         int indexGagnant = partie.getPorteGagnante();
@@ -121,35 +115,18 @@ public class Jeu {
             porteDisponible = 1;
         } else if (porteChoisiParAnimateur == 0 && indexPorte == 1) {
             porteDisponible = 2;
-        } else if (porteChoisiParAnimateur == 2 && indexPorte == 1) {
+        }else if (porteChoisiParAnimateur == 2 && indexPorte == 1) {
             porteDisponible = 0;
-        } else if (porteChoisiParAnimateur == 0 && indexPorte == 2) {
+        }else if (porteChoisiParAnimateur == 0 && indexPorte == 2) {
             porteDisponible = 1;
-        } else if (porteChoisiParAnimateur == 1 && indexPorte == 2) {
+        }else if (porteChoisiParAnimateur == 1 && indexPorte == 2) {
             porteDisponible = 0;
         }
         System.out.println("Debug Gagnant: " + indexGagnant);
         System.out.println("L'animateur ouvre la porte numéro " + porteChoisiParAnimateur + ", il n'y a rien derrière");
+        System.out.println("Voulez vous changez votre porte pour la porte numéro " + porteDisponible + " ? ou gardez votre porte " + indexPorte + " ?");
+        String reponse = s.nextLine();
 
-        System.out.println("Voulez vous changez votre porte pour la porte numéro " + porteDisponible + " ( C ) ? ou gardez votre porte numéro " + indexPorte + " ( G ) ?");
-        String reponseStr = s.nextLine();
-
-        if (reponseStr.equalsIgnoreCase("c")) {
-            System.out.println("Vous ouvrez la porte " + porteDisponible);
-            if (porteDisponible == indexGagnant) {
-                System.out.println("Vous avez gagnée !!!");
-            } else {
-                System.out.println("Vous avez perdu...");
-            }
-        } else if (reponseStr.equalsIgnoreCase("g")) {
-            System.out.println("Vous ouvrez la porte " + indexPorte);
-            if (indexPorte == indexGagnant) {
-                System.out.println("Vous avez gagnée !!!");
-            } else {
-                System.out.println("Vous avez perdu...");
-            }
-
-        }
     }
 
     public static void main(String[] args) {
