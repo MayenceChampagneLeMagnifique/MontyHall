@@ -16,7 +16,6 @@ public class Jeu {
     public Jeu() {
         Scanner s = new Scanner(System.in);
 
-        //Texte explicatif
         System.out.println("Bienvenue au problème de Monty Hall !" + "\n");
 
         System.out.println("Ce problème est définit comme suit : vous avez 3 portes devant vous, une des portes possède un prix et les deux autres sont vides.");
@@ -27,32 +26,21 @@ public class Jeu {
         System.out.println("Le mode manuel vous permet de participer comme si vous étiez en temps réel dans le problème.");
         System.out.println("Le mode automatique simule un nombre de joueurs de votre choix changeant de portes pour un pourcentage de votre choix et faisant un nombre de parties de votre choix." + "\n");
 
-        //Question
         System.out.println("Désirez-vous lancer le mode manuel ( M ) ou le mode automatique ( A ) ?");
 
         String reponse = s.nextLine();
 
-        //Si la réponse est incorrecte, redemander la question
-        while (!reponse.equalsIgnoreCase("M") && !reponse.equalsIgnoreCase("A")) {
-            System.out.println("Réponse incorrecte");
-            System.out.println("Désirez-vous lancer le mode manuel ( M ) ou le mode automatique ( A ) ?");
 
-            reponse = s.nextLine();
-        }
 
-        //Lancer le mode manuel si la réponse est 'M'
         if (reponse.equalsIgnoreCase("M")) {
             System.out.println("Quel est votre nom ?");
-
             String nom = s.nextLine();
             Joueur joueur = new Joueur(nom);
-
             jouerPartieManuellement(joueur);
         }
 
-        //Lancer le mode automatique si la réponse est 'A'
         if (reponse.equalsIgnoreCase("A")) {
-            jouerPartiesAuto();
+
         }
     }
 
@@ -126,11 +114,11 @@ public class Jeu {
             porteDisponible = 1;
         } else if (porteChoisiParAnimateur == 0 && indexPorte == 1) {
             porteDisponible = 2;
-        } else if (porteChoisiParAnimateur == 2 && indexPorte == 1) {
+        }else if (porteChoisiParAnimateur == 2 && indexPorte == 1) {
             porteDisponible = 0;
-        } else if (porteChoisiParAnimateur == 0 && indexPorte == 2) {
+        }else if (porteChoisiParAnimateur == 0 && indexPorte == 2) {
             porteDisponible = 1;
-        } else if (porteChoisiParAnimateur == 1 && indexPorte == 2) {
+        }else if (porteChoisiParAnimateur == 1 && indexPorte == 2) {
             porteDisponible = 0;
         }
         System.out.println("Debug Gagnant: " + indexGagnant);
