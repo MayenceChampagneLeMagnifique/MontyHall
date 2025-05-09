@@ -2,8 +2,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -29,13 +29,13 @@ public class Jeu {
         Joueur joueur = new Joueur(nom);
 
         if (reponse.equalsIgnoreCase("M")) {
-            JouerPartieManuel(joueur);
+            JouerPartieManuellement(joueur);
         }
 
         if (reponse.equalsIgnoreCase("A")) {
             System.out.println("Combien de partie voulez-vous jouer ?");
             int nombrePartie = s.nextInt();
-            JouerParties(joueur, nombrePartie);
+            JouerPartiesAuto(joueur, nombrePartie);
         }
     }
 
@@ -58,7 +58,7 @@ public class Jeu {
 //
 //    }
 
-    public void JouerParties(Joueur joueur, int NombreParties) {
+    public void JouerPartiesAuto(Joueur joueur, int NombreParties) {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Combien de fois sur 100 voulez vous changer de porte si la première est vide ?");
@@ -73,13 +73,30 @@ public class Jeu {
 
     }
 
-    public void JouerPartieManuel(Joueur joueur) {
+    public void JouerPartieManuellement(Joueur joueur) {
         Scanner s = new Scanner(System.in);
         System.out.println("Quelle porte voulez vous choisir ? ( 1, 2, 3, ...)");
         int indexPorte = s.nextInt();
         Partie partie = new Partie();
 
         Porte porteIndex = partie.getListePortes().get(indexPorte - 1);
+        int indexGagnant = partie.getPorteGagnante();
+
+        Random r = new Random();
+        int rand = r.nextInt(1);
+        int porteChoisiParAnimateur;
+
+        switch(indexGagnant){
+            case 0:
+                if (rand == 0){
+                    porteChoisiParAnimateur = 1;
+                } else porteChoisiParAnimateur = 2;
+            case 1:
+
+
+            case 2:
+
+        }
         System.out.println("L'animateur ouvre la porte numéro " + "" + ", il n'y a rien derrière");
 
     }
