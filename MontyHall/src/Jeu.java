@@ -16,26 +16,31 @@ public class Jeu {
     public void lancerPartie() {
         Scanner s = new Scanner(System.in);
 
-        System.out.println("Bienvenue au problème de Monty Hall");
+        System.out.println("Bienvenue au problème de Monty Hall !" + "\n");
 
-        System.out.println("Vous allez avoir 3 portes devant vous et aller devoir choisir une des 3.");
-        System.out.println("Dans 1 des 3 ce trouve un prix et dans les autres, rien.");
-        System.out.println("Voulez vous jouer manuellement ( M ) ou plutot analyser les chances de tomber sur la porte avec le prix ? ( A )");
+        System.out.println("Ce problème est définit comme suit : vous avez 3 portes devant vous, une des portes possède un prix et les deux autres sont vides.");
+        System.out.println("Vous devez choirir une porte. Ensuite, l'animateur ouvre une des porte restante, qui est vide.");
+        System.out.println("Le dilemme est le suivant : changez-vous votre choix de porte?" + "\n");
+
+        System.out.println("Ce programme comporte deux modes ; un mode manuel et un mode automatique.");
+        System.out.println("Le mode manuel vous permet de participer comme si vous étiez en temps réel dans le problème.");
+        System.out.println("Le mode automatique simule un nombre de joueurs de votre choix changeant de portes pour un pourcentage de votre choix et faisant un nombre de parties de votre choix." + "\n");
+
+        System.out.println("Désirez-vous lancer le mode manuel ( M ) ou le mode automatique ( A ) ?");
 
         String reponse = s.nextLine();
 
-        System.out.println("Quel est votre nom ?");
-        String nom = s.nextLine();
-        Joueur joueur = new Joueur(nom);
+
 
         if (reponse.equalsIgnoreCase("M")) {
+            System.out.println("Quel est votre nom ?");
+            String nom = s.nextLine();
+            Joueur joueur = new Joueur(nom);
             JouerPartieManuellement(joueur);
         }
 
         if (reponse.equalsIgnoreCase("A")) {
-            System.out.println("Combien de partie voulez-vous jouer ?");
-            int nombrePartie = s.nextInt();
-            JouerPartiesAuto(joueur, nombrePartie);
+
         }
     }
 
@@ -58,7 +63,7 @@ public class Jeu {
 //
 //    }
 
-    public void JouerPartiesAuto(Joueur joueur, int NombreParties) {
+    public void JouerPartiesAuto(Joueur joueur, int nombreParties) {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Combien de fois sur 100 voulez vous changer de porte si la première est vide ?");
