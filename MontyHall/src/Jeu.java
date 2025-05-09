@@ -42,7 +42,6 @@ public class Jeu {
             System.out.println("Quel est votre nom ?");
             String nom = s.nextLine();
             Joueur joueur = new Joueur(nom);
-
             jouerPartieManuellement(joueur);
         }
 
@@ -94,6 +93,7 @@ public class Jeu {
 
         Random r = new Random();
         int rand = r.nextInt(2);
+        System.out.println(rand);
         int porteChoisiParAnimateur = 0;
         int porteDisponible = 0;
 
@@ -115,23 +115,22 @@ public class Jeu {
                 break;
         }
 
-        if (porteChoisiParAnimateur == 1 && indexPorte == 0) {
-            porteDisponible = 2;
-        } else if (porteChoisiParAnimateur == 2 && indexPorte == 0) {
-            porteDisponible = 1;
-        } else if (porteChoisiParAnimateur == 0 && indexPorte == 1) {
-            porteDisponible = 2;
-        }else if (porteChoisiParAnimateur == 2 && indexPorte == 1) {
-            porteDisponible = 0;
-        }else if (porteChoisiParAnimateur == 0 && indexPorte == 2) {
-            porteDisponible = 1;
-        }else if (porteChoisiParAnimateur == 1 && indexPorte == 2) {
-            porteDisponible = 0;
-        }
         System.out.println("Debug Gagnant: " + indexGagnant);
         System.out.println("L'animateur ouvre la porte numéro " + porteChoisiParAnimateur + ", il n'y a rien derrière");
-        System.out.println("Voulez vous changez votre porte pour la porte numéro " + porteDisponible + " ? ou gardez votre porte " + indexPorte + " ?");
-        String reponse = s.nextLine();
+        System.out.println("Voulez vous changez de porte ( C ) ? ou gardez votre porte ( G )?");
+        s.nextLine();
+        String strReponse = s.nextLine();
+        if (strReponse.equalsIgnoreCase("c")){
+            if (indexGagnant != indexPorte){
+                System.out.println("Vous avez gagnez !");
+            }
+        } else if (strReponse.equalsIgnoreCase("g")) {
+            if (indexGagnant == indexPorte){
+                System.out.println("Vous avez gagnez !");
+            }
+        }
+
+
 
     }
 
