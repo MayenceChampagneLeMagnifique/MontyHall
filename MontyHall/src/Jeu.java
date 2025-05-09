@@ -77,7 +77,6 @@ public class Jeu {
 
     public void jouerPartiesAuto() {
         Scanner s = new Scanner(System.in);
-
         System.out.println("Combien de fois sur 100 voulez vous changer de porte si la première est vide ?");
         int pourcentage = 150;
         do {
