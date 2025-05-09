@@ -31,16 +31,23 @@ public class Jeu {
         String reponse = s.nextLine();
 
 
+        while (!reponse.equalsIgnoreCase("M") && !reponse.equalsIgnoreCase("A")) {
+            System.out.println("Réponse incorrecte.");
+            System.out.println("Désirez-vous lancer le mode manuel ( M ) ou le mode automatique ( A ) ?");
+
+            reponse = s.nextLine();
+        }
 
         if (reponse.equalsIgnoreCase("M")) {
             System.out.println("Quel est votre nom ?");
             String nom = s.nextLine();
             Joueur joueur = new Joueur(nom);
+
             jouerPartieManuellement(joueur);
         }
 
         if (reponse.equalsIgnoreCase("A")) {
-
+            jouerPartiesAuto();
         }
     }
 
