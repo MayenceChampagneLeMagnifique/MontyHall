@@ -35,4 +35,8 @@ public class Partie {
     public int getNOMBRE_PORTES() {
         return NOMBRE_PORTES;
     }
+
+    public int getPorteGagnante() {
+        return porteGagnante;
+    }
 }
