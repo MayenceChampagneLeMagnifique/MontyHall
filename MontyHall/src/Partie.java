@@ -39,4 +39,9 @@ public class Partie {
     public int getPorteGagnante() {
         return porteGagnante;
     }
+
+    @Override
+    public String toString() {
+        return "Partie : " + getListePortes() + " | Porte Gagnante : " + porteGagnante;
+    }
 }
