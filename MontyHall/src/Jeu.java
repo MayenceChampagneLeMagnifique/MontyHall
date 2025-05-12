@@ -65,15 +65,49 @@ public class Jeu {
 
     public void jouerPartiesAuto() {
         Scanner s = new Scanner(System.in);
-        System.out.println("Combien de fois sur 100 voulez vous changer de porte si la première est vide ?");
-        int pourcentage = 150;
-        do {
-            pourcentage = s.nextInt();
-            if (pourcentage < 0 || pourcentage > 100) {
-                System.out.println("Vous n'avez pas entrée une valeur entre 0 et 100");
+        List<Joueur> listeJoueurs = new ArrayList<>();
+        String reponse = "";
+        int reponseInt = -1;
+
+        System.out.println("Voulez vous ajouter ( A ) un joueur ou lancer le jeu ( L )?");
+
+        reponse = s.nextLine();
+
+        while (!reponse.equalsIgnoreCase("L")) {
+
+            //Ajouter des joueurs dans listeJoueurs
+            if (reponse.equalsIgnoreCase("A")) {
+                boolean bonneReponse = false;
+
+                while (!bonneReponse) {
+                    System.out.println("Combien de fois sur 100 voulez vous que ce joueur change de porte?");
+                    reponse = s.nextLine();
+
+                    //Teste si la réponse est bien un int
+                    try {
+                        reponseInt = Integer.parseInt(reponse);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Erreur : Seulement les nombres entre 0 et 100 sont acceptés");
+                    }
+
+                    if (reponseInt >= 0 && reponseInt <= 100) {
+                        bonneReponse = true;
+                    } else {
+                        System.out.println("Entrez un nombre entre 0 et 100");
+                    }
+                }
+
+                Joueur joueur = new Joueur(reponseInt);
+
+                listeJoueurs.add(joueur);
+            } else {
+                System.out.println("Voulez vous ajouter ( A ) un joueur ou lancer le jeu ( L )?");
+
+                reponse = s.nextLine();
             }
         }
-        while (pourcentage < 0 || pourcentage > 100);
+
+
 
     }
 
