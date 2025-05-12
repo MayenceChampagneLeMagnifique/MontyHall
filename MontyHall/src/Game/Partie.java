@@ -1,3 +1,5 @@
+package Game;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -42,6 +44,6 @@ public class Partie {
 
     @Override
     public String toString() {
-        return "Partie : " + getListePortes() + " | Porte Gagnante : " + porteGagnante;
+        return "Game.Partie : " + getListePortes() + " | Game.Porte Gagnante : " + porteGagnante;
     }
 }

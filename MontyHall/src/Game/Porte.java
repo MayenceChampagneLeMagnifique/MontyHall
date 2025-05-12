@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * Cette classe permet de créer une porte
  */

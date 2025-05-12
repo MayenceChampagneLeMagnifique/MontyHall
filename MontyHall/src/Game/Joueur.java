@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * Cette classe permet de créer un joueur
  */
@@ -43,6 +45,6 @@ public class Joueur {
 
     @Override
     public String toString() {
-        return "Joueur :" + getNom() + ". Nombre de parties jouées : " + nombreDePartiesJouees + ". Pourcentage de parties gagnées : " + pourcentagePartiesGagnees + ". Pourcentage de changement de portes : " + pourcentageChangementDePortes + ".";
+        return "Game.Joueur :" + getNom() + ". Nombre de parties jouées : " + nombreDePartiesJouees + ". Pourcentage de parties gagnées : " + pourcentagePartiesGagnees + ". Pourcentage de changement de portes : " + pourcentageChangementDePortes + ".";
     }
 }
