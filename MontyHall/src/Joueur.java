@@ -13,6 +13,10 @@ public class Joueur {
         setNom(nom);
     }
 
+    public Joueur(int pourcentageChangementDePortes) {
+        this.pourcentageChangementDePortes = pourcentageChangementDePortes;
+    }
+
     public String getNom() {
         return nom;
     }
