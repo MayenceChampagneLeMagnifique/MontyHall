@@ -39,10 +39,7 @@ public class Jeu {
         }
 
         if (reponse.equalsIgnoreCase("M")) {
-            System.out.println("Quel est votre nom ?");
-            String nom = s.nextLine();
-            Joueur joueur = new Joueur(nom);
-            jouerPartieManuellement(joueur);
+            jouerPartieManuellement();
         }
 
         if (reponse.equalsIgnoreCase("A")) {
@@ -65,9 +62,6 @@ public class Jeu {
         }
     }
 
-//    public void LancerAnalyse(int nombreParties) {
-//
-//    }
 
     public void jouerPartiesAuto() {
         Scanner s = new Scanner(System.in);
@@ -83,56 +77,65 @@ public class Jeu {
 
     }
 
-    public void jouerPartieManuellement(Joueur joueur) {
+    public void jouerPartieManuellement() {
         Scanner s = new Scanner(System.in);
-        System.out.println("Quelle porte voulez vous choisir ? ( 0, 1, 2, ...)");
-        int indexPorte = s.nextInt();
+        Random r = new Random();
         Partie partie = new Partie();
 
         int indexGagnant = partie.getPorteGagnante();
 
-        Random r = new Random();
-        int rand = r.nextInt(2);
-        System.out.println(rand);
-        int porteChoisiParAnimateur = 0;
-        int porteDisponible = 0;
-
-        switch (indexGagnant) {
-            case 0:
-                if (rand == 0) {
-                    porteChoisiParAnimateur = 1;
-                } else porteChoisiParAnimateur = 2;
-                break;
-            case 1:
-                if (rand == 0) {
-                    porteChoisiParAnimateur = 0;
-                } else porteChoisiParAnimateur = 2;
-                break;
-            case 2:
-                if (rand == 0) {
-                    porteChoisiParAnimateur = 0;
-                } else porteChoisiParAnimateur = 1;
-                break;
-        }
-
-        System.out.println("Debug Gagnant: " + indexGagnant);
-        System.out.println("L'animateur ouvre la porte numéro " + porteChoisiParAnimateur + ", il n'y a rien derrière");
-        System.out.println("Voulez vous changez de porte ( C ) ? ou gardez votre porte ( G )?");
-        s.nextLine();
-        String strReponse = s.nextLine();
-        if (strReponse.equalsIgnoreCase("c")){
-            if (indexGagnant != indexPorte){
-                System.out.println("Vous avez gagnez !");
-            }
-        } else if (strReponse.equalsIgnoreCase("g")) {
-            if (indexGagnant == indexPorte){
-                System.out.println("Vous avez gagnez !");
+        System.out.println("Choisissez une porte (0, 1 ou 2) : ");
+        int indexPorte = -1;
+        while (indexPorte < 0 || indexPorte > 2) {
+            try {
+                indexPorte = Integer.parseInt(s.nextLine());
+                if (indexPorte < 0 || indexPorte > 2) {
+                    System.out.println("Veuillez choisir une porte entre 0 et 2.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Entrez un nombre valide.");
             }
         }
 
+        List<Integer> portesPossibles = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            if (i != indexPorte && i != indexGagnant) {
+                portesPossibles.add(i);
+            }
+        }
 
+        int porteOuverte = portesPossibles.get(r.nextInt(portesPossibles.size()));
+        System.out.println("L'animateur ouvre la porte " + porteOuverte + " (vide).");
 
+        System.out.println("Souhaitez-vous changer de porte (C) ou garder votre choix (G) ?");
+        String strReponse = "";
+        while (!strReponse.equalsIgnoreCase("c") && !strReponse.equalsIgnoreCase("g")) {
+            strReponse = s.nextLine();
+            if (!strReponse.equalsIgnoreCase("c") && !strReponse.equalsIgnoreCase("g")) {
+                System.out.println("Réponse invalide. Entrez 'C' pour changer ou 'G' pour garder.");
+            }
+        }
+
+        boolean aChange = false;
+        if (strReponse.equalsIgnoreCase("c")) {
+            for (int i = 0; i < 3; i++) {
+                if (i != indexPorte && i != porteOuverte) {
+                    indexPorte = i;
+                    aChange = true;
+                    break;
+                }
+            }
+        }
+
+        boolean aGagne = (indexPorte == indexGagnant);
+
+        if (aGagne) {
+            System.out.println("🎉 Vous avez gagné !");
+        } else {
+            System.out.println("😢 Vous avez perdu. Le prix était derrière la porte " + indexGagnant);
+        }
     }
+
 
     public static void main(String[] args) {
         new Jeu();
