@@ -14,8 +14,10 @@ import java.util.Scanner;
 public class Jeu {
 
     private List<Partie> listeParties = new ArrayList();
-
     public Jeu() {
+    }
+
+    public void Jouer() {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Bienvenue au problème de Monty Hall !" + "\n");
@@ -170,11 +172,29 @@ public class Jeu {
         } else {
             System.out.println("😢 Vous avez perdu. Le prix était derrière la porte " + indexGagnant);
         }
+
+        String rep = s.nextLine();
+
+        System.out.println("Voulez vous rejouer une partie ? Oui (O) ou Non (N)");
+
+        while (!rep.equalsIgnoreCase("o") && !rep.equalsIgnoreCase("n")) {
+            System.out.println("Réponse incorrecte.");
+            System.out.println("Désirez-vous relancer une partie ? Oui (O) ou Non (N)");
+
+            rep = s.nextLine();
+        }
+
+        if (rep.equalsIgnoreCase("o")){
+            jouerPartieManuellement();
+        } else if (rep.equalsIgnoreCase("n")) {
+            System.out.println("Bonne journée !");
+        }
+
     }
 
 
     public static void main(String[] args) {
-        new Jeu();
+        new Jeu().Jouer();
     }
 }
 

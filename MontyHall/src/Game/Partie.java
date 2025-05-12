@@ -44,6 +44,6 @@ public class Partie {
 
     @Override
     public String toString() {
-        return "Game.Partie : " + getListePortes() + " | Game.Porte Gagnante : " + porteGagnante;
+        return "Partie : " + getListePortes() + " | Porte Gagnante : " + porteGagnante;
     }
 }
