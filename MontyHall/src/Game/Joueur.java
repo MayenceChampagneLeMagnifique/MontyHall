@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.Random;
+
 /**
  * Cette classe permet de créer un joueur
  */
@@ -7,9 +9,9 @@ package Game;
 public class Joueur {
 
     private String nom;
-    private int nombreDePartiesJouees;
+    private int nombreDePartiesJouees = 0;
     private double pourcentagePartiesGagnees;
-    private double pourcentageChangementDePortes;
+    private int pourcentageChangementDePortes;
 
     public Joueur(String nom) {
         setNom(nom);
@@ -17,6 +19,16 @@ public class Joueur {
 
     public Joueur(int pourcentageChangementDePortes) {
         this.pourcentageChangementDePortes = pourcentageChangementDePortes;
+    }
+
+    public void jouerPartieAuto() {
+        Random r = new Random();
+        Partie p = new Partie();
+
+        p.ouvrirPorte();
+        if (r.nextInt(100) < pourcentageChangementDePortes) {
+
+        }
     }
 
     public String getNom() {
