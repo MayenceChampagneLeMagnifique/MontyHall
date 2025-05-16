@@ -23,8 +23,8 @@ public class Porte {
         gagnante = true;
     }
 
-    public void choisir() {
-        choisie = true;
+    public void setChoisie(boolean choisie) {
+        this.choisie = choisie;
     }
 
     public boolean isChoisie() {
