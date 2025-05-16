@@ -33,7 +33,8 @@ public class Partie {
     public List<Porte> getListePortes() {
         return listePortes;
 
-}
+    }
+
     public int getNOMBRE_PORTES() {
         return NOMBRE_PORTES;
     }
@@ -44,6 +45,15 @@ public class Partie {
 
     @Override
     public String toString() {
-        return "Partie : " + getListePortes() + " | Porte Gagnante : " + porteGagnante;
+        String str = "";
+        for (int i = 0; i < 3; i++) {
+            int indexPorte = i + 1;
+            str += " " + indexPorte + " : ";
+            str += getListePortes().get(i).toString();
+            str += " |";
+        }
+        System.out.println(str);
+        int porteGagn = porteGagnante + 1;
+        return "Portes  " + str + " Porte Gagnante : " + porteGagn;
     }
 }

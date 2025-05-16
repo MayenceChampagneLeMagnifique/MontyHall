@@ -18,4 +18,11 @@ public class Porte {
     public void setPrix(Prix prix) {
         this.prix = prix;
     }
+
+    @Override
+    public String toString() {
+        return
+                "prix=" + prix
+                ;
+    }
 }

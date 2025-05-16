@@ -1,5 +1,6 @@
 package Game;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -66,7 +67,6 @@ public class Jeu {
             System.err.println("Erreur lors de l'exportation des parties : " + e.getMessage());
         }
     }
-
 
 
     public void jouerPartiesAuto() {
@@ -153,12 +153,10 @@ public class Jeu {
             }
         }
 
-        boolean aChange = false;
         if (strReponse.equalsIgnoreCase("c")) {
             for (int i = 0; i < 3; i++) {
                 if (i != indexPorte && i != porteOuverte) {
                     indexPorte = i;
-                    aChange = true;
                     break;
                 }
             }
@@ -167,14 +165,14 @@ public class Jeu {
         boolean aGagne = (indexPorte == indexGagnant);
 
         if (aGagne) {
-            System.out.println("🎉 Vous avez gagné !");
+            System.out.println("🎉 Vous avez gagné ! Le prix était derrière la porte " + indexGagnant);
         } else {
             System.out.println("😢 Vous avez perdu. Le prix était derrière la porte " + indexGagnant);
         }
 
-        String rep = s.nextLine();
-
         System.out.println("Voulez vous rejouer une partie ? Oui (O) ou Non (N)");
+
+        String rep = s.nextLine();
 
         while (!rep.equalsIgnoreCase("o") && !rep.equalsIgnoreCase("n")) {
             System.out.println("Réponse incorrecte.");
@@ -183,12 +181,11 @@ public class Jeu {
             rep = s.nextLine();
         }
 
-        if (rep.equalsIgnoreCase("o")){
+        if (rep.equalsIgnoreCase("o")) {
             jouerPartieManuellement();
         } else if (rep.equalsIgnoreCase("n")) {
             System.out.println("Bonne journée !");
         }
-
     }
 
 
