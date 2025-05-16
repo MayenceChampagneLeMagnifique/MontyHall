@@ -15,21 +15,18 @@ public interface Util {
 
     default int poserQuestionInt(String question) {
         Scanner s = new Scanner(System.in);
-        String reponse;
         int reponseInt = 0;
-        boolean estInt = false;
+        boolean valide = false;
 
-        while (!estInt) {
-            estInt = true;
+        System.out.println(question);
 
-            System.out.println(question);
-            reponse = s.nextLine();
-
-            try {
-                reponseInt = Integer.parseInt(reponse);
-            } catch (NumberFormatException e) {
-                System.out.println("Erreur : Seulement les nombres sont acceptés");
-                estInt = false;
+        while (!valide) {
+            if (s.hasNextInt()) {
+                reponseInt = s.nextInt();
+                valide = true;
+            } else {
+                System.out.println("Entrer un entier");
+                s.next();
             }
         }
 
