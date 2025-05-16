@@ -71,55 +71,47 @@ public class Jeu {
 
     public void jouerPartiesAuto() {
         Scanner s = new Scanner(System.in);
+        List<Joueur> listeJoueurs = new ArrayList<>();
+        String reponse = "";
+        int reponseInt = -1;
 
-        System.out.println("Combien de parties voulez-vous simuler ?");
-        int nombreParties = s.nextInt();
+        System.out.println("Voulez vous ajouter ( A ) un joueur ou lancer le jeu ( L )?");
 
-        System.out.println("Combien de fois sur 100 voulez-vous changer de porte ?");
-        int pourcentage = -1;
-        while (pourcentage < 0 || pourcentage > 100) {
-            pourcentage = s.nextInt();
-            if (pourcentage < 0 || pourcentage > 100) {
-                System.out.println("Entrez une valeur entre 0 et 100.");
-            }
-        }
+        reponse = s.nextLine();
 
-        int victoires = 0;
+        while (!reponse.equalsIgnoreCase("L")) {
 
-        Random random = new Random();
+            //Ajouter des joueurs dans listeJoueurs
+            if (reponse.equalsIgnoreCase("A")) {
+                boolean bonneReponse = false;
 
-        for (int i = 0; i < nombreParties; i++) {
-            Partie partie = new Partie();
-            int porteChoisie = random.nextInt(3);
-            int porteGagnante = partie.getPorteGagnante();
+                while (!bonneReponse) {
+                    System.out.println("Combien de fois sur 100 voulez vous que ce joueur change de porte?");
+                    reponse = s.nextLine();
 
-            List<Integer> portesRestantes = new ArrayList<>();
-            for (int j = 0; j < 3; j++) {
-                if (j != porteChoisie && j != porteGagnante) {
-                    portesRestantes.add(j);
-                }
-            }
-            int porteOuverte = portesRestantes.get(random.nextInt(portesRestantes.size()));
+                    //Teste si la réponse est bien un int
+                    try {
+                        reponseInt = Integer.parseInt(reponse);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Erreur : Seulement les nombres entre 0 et 100 sont acceptés");
+                    }
 
-            boolean changer = random.nextInt(100) < pourcentage;
-
-            if (changer) {
-                for (int j = 0; j < 3; j++) {
-                    if (j != porteChoisie && j != porteOuverte) {
-                        porteChoisie = j;
-                        break;
+                    if (reponseInt >= 0 && reponseInt <= 100) {
+                        bonneReponse = true;
+                    } else {
+                        System.out.println("Entrez un nombre entre 0 et 100");
                     }
                 }
-            }
 
-            if (porteChoisie == porteGagnante) {
-                victoires++;
+                Joueur joueur = new Joueur(reponseInt);
+
+                listeJoueurs.add(joueur);
+            } else {
+                System.out.println("Voulez vous ajouter ( A ) un joueur ou lancer le jeu ( L )?");
+
+                reponse = s.nextLine();
             }
-            listeParties.add(partie);
         }
-        double tauxVictoire = (double) victoires / nombreParties * 100;
-        System.out.println("Sur " + nombreParties + " parties avec un taux de changement de " + pourcentage + " %, le taux de victoires est de " + tauxVictoire + " %.");
-        exporterParties("Export/donnees.txt");
     }
 
     public void jouerPartieManuellement() {
