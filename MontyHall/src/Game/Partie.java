@@ -11,7 +11,6 @@ import java.util.Random;
 public class Partie {
     private final int NOMBRE_PORTES = 3;
     private List<Porte> listePortes = new ArrayList<>();
-    private static final Prix PRIX_DEFAUT = Prix.AUCUN_PRIX;
     private int porteGagnante;
 
     public Partie() {
@@ -22,19 +21,35 @@ public class Partie {
         Random r = new Random();
 
         for (int i = 0; i < NOMBRE_PORTES; i++) {
-            listePortes.add(new Porte(PRIX_DEFAUT));
+            listePortes.add(new Porte());
         }
 
         porteGagnante = r.nextInt(NOMBRE_PORTES);
 
-        listePortes.get(porteGagnante).setPrix(Prix.VOITURE);
+        listePortes.get(porteGagnante).setGagnante();
+    }
+
+    //L'animateur qui ouvre la porte
+    public void ouvrirPorte() {
+        List<Integer> indexPossibles = new ArrayList<>();
+
+        for (int index = 0; index < listePortes.size(); index++) {
+            Porte p = listePortes.get(index);
+
+            if (!p.isChoisie() && p.isGagnante()) {
+                indexPossibles.add(index);
+            }
+        }
+    }
+
+    public void changerPorte() {
+
     }
 
     public List<Porte> getListePortes() {
         return listePortes;
 
     }
-
     public int getNOMBRE_PORTES() {
         return NOMBRE_PORTES;
     }
@@ -45,15 +60,6 @@ public class Partie {
 
     @Override
     public String toString() {
-        String str = "";
-        for (int i = 0; i < 3; i++) {
-            int indexPorte = i + 1;
-            str += " " + indexPorte + " : ";
-            str += getListePortes().get(i).toString();
-            str += " |";
-        }
-        System.out.println(str);
-        int porteGagn = porteGagnante + 1;
-        return "Portes  " + str + " Porte Gagnante : " + porteGagn;
+        return "Partie : " + getListePortes() + " | Porte Gagnante : " + porteGagnante;
     }
 }
