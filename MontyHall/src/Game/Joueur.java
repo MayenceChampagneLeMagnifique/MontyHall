@@ -11,6 +11,7 @@ public class Joueur {
     private String nom;
     private int nombreDePartiesJouees = 0;
     private double pourcentagePartiesGagnees;
+    private int nombrePartiesGagnees = 0;
     private int pourcentageChangementDePortes;
 
     public Joueur(String nom) {
@@ -25,10 +26,23 @@ public class Joueur {
         Random r = new Random();
         Partie p = new Partie();
 
-        p.ouvrirPorte();
-        if (r.nextInt(100) < pourcentageChangementDePortes) {
+        //Choix aléatoire de la porte
+        p.setIndexPorteChoisie(r.nextInt(p.getListePortes().size()));
 
+        //L'animateur ouvre les portes
+        p.ouvrirPortes();
+
+        //Changement de porte
+        if (r.nextInt(100) < pourcentageChangementDePortes) {
+            p.changerPorte();
         }
+
+        //Vérification si victoire
+        if (p.getIndexPorteChoisie() == p.getIndexPorteGagnante()) {
+            nombrePartiesGagnees++;
+        }
+
+        nombreDePartiesJouees++;
     }
 
     public String getNom() {
