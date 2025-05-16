@@ -1,6 +1,5 @@
 package Game;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +11,7 @@ import java.util.Scanner;
 /**
  * Cette classe permet de créer le jeu
  */
-public class Jeu {
+public class Jeu implements Util {
 
     private List<Partie> listeParties = new ArrayList<>();
     public Jeu() {
@@ -74,6 +73,7 @@ public class Jeu {
         List<Joueur> listeJoueurs = new ArrayList<>();
         String reponse = "";
         int reponseInt = -1;
+        int nombreParties;
 
         System.out.println("Voulez vous ajouter ( A ) un joueur ou lancer le jeu ( L )?");
 
@@ -112,6 +112,15 @@ public class Jeu {
                 reponse = s.nextLine();
             }
         }
+
+           nombreParties = poserQuestionInt("Combien de parties par joueur voulez-vous faire?");
+
+
+        for (Joueur j : listeJoueurs) {
+            for (int i = 0; i < nombreParties; i++) {
+                j.jouerPartieAuto();
+            }
+        }
     }
 
     public void jouerPartieManuellement() {
@@ -119,7 +128,7 @@ public class Jeu {
         Random r = new Random();
         Partie partie = new Partie();
 
-        int indexGagnant = partie.getPorteGagnante();
+        int indexGagnant = partie.getIndexPorteGagnante();
 
         System.out.println("Choisissez une porte (0, 1 ou 2) : ");
         int indexPorte = -1;
