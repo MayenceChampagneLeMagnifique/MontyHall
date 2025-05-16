@@ -5,24 +5,37 @@ package Game;
  */
 
 public class Porte {
-    private Prix prix;
+    private boolean gagnante;
+    private boolean choisie;
+    private boolean ouverte;
 
-    public Porte(Prix prix) {
-        setPrix(prix);
+    public Porte() {
+        this.gagnante = false;
+        this.choisie = false;
+        this.ouverte = false;
     }
 
-    public Prix getPrix() {
-        return prix;
+    public boolean isGagnante() {
+        return gagnante;
     }
 
-    public void setPrix(Prix prix) {
-        this.prix = prix;
+    public void setGagnante() {
+        gagnante = true;
     }
 
-    @Override
-    public String toString() {
-        return
-                "prix=" + prix
-                ;
+    public void choisir() {
+        choisie = true;
+    }
+
+    public boolean isChoisie() {
+        return choisie;
+    }
+
+    public boolean isOuverte() {
+        return ouverte;
+    }
+
+    public void setOuverte(boolean ouverte) {
+        this.ouverte = ouverte;
     }
 }
