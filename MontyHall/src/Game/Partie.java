@@ -33,25 +33,22 @@ public class Partie {
 
     //L'animateur qui ouvre la porte
     public void ouvrirPortes() {
-        List<Integer> indexPossibles = new ArrayList<>();
-        Random r = new Random();
-        int indexPorteFermee;
-
-        for (int index = 0; index < listePortes.size(); index++) {
-            Porte p = listePortes.get(index);
-
+        List<Integer> candidats = new ArrayList<>();
+        for (int i = 0; i < listePortes.size(); i++) {
+            Porte p = listePortes.get(i);
             if (!p.isChoisie() && !p.isGagnante()) {
-                indexPossibles.add(index);
+                candidats.add(i);
             }
         }
+        Random r = new Random();
+        int porteOuverte = candidats.get(r.nextInt(candidats.size()));
+        listePortes.get(porteOuverte).setOuverte(true);
 
-        indexPorteFermee= r.nextInt(indexPossibles.size());
-
-        for (int index = 0; index < listePortes.size(); index++) {
-            if (index != indexPorteFermee) {
-                listePortes.get(index).setOuverte(true);
-            } else {
-                indexPorteRestante = index;
+        for (int i = 0; i < listePortes.size(); i++) {
+            Porte p = listePortes.get(i);
+            if (!p.isOuverte() && !p.isChoisie()) {
+                indexPorteRestante = i;
+                break;
             }
         }
     }
@@ -85,6 +82,8 @@ public class Partie {
 
     public void setIndexPorteChoisie(int indexPorteChoisie) {
         this.indexPorteChoisie = indexPorteChoisie;
+        listePortes.get(indexPorteChoisie).setChoisie(true);
+
     }
 
     @Override

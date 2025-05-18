@@ -1,1 +1,0 @@
-Portes   1 : prix=VOITURE | 2 : prix=AUCUN_PRIX | 3 : prix=AUCUN_PRIX | Porte Gagnante : 1
