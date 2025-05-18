@@ -85,9 +85,4 @@ public class Partie {
         listePortes.get(indexPorteChoisie).setChoisie(true);
 
     }
-
-    @Override
-    public String toString() {
-        return "Partie : " + getListePortes() + " | Porte Gagnante : " + indexPorteGagnante;
-    }
 }
