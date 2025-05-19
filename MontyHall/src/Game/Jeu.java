@@ -13,9 +13,7 @@ public class Jeu implements Util {
     private List<Joueur> listeJoueurs = new ArrayList<>();
     private List<Partie> listeParties = new ArrayList<>();
 
-    public Jeu() {}
-
-    public void jouer() {
+    public Jeu() {
         System.out.println("Bienvenue au problème de Monty Hall !" + "\n");
 
         System.out.println("Ce problème est défini comme suit : vous avez 3 portes devant vous, une des portes possède un prix et les deux autres sont vides.");
@@ -89,12 +87,11 @@ public class Jeu implements Util {
             }
         }
         String fSep = File.separator;
-        String path = "MontyHall" + fSep + "MontyHall" + fSep + "src" + fSep + "Export" + fSep + "donnees.csv";
+        String path = "MontyHall" + fSep + "src" + fSep + "Export" + fSep + "donnees.csv";
         exporterResultats(path);
     }
 
     public void jouerPartieManuellement() {
-        Scanner s = new Scanner(System.in);
         Random r = new Random();
         Partie partie = new Partie();
 
@@ -150,6 +147,6 @@ public class Jeu implements Util {
     }
 
     public static void main(String[] args) {
-        new Jeu().jouer();
+        new Jeu();
     }
 }
