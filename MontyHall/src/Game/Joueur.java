@@ -7,16 +7,11 @@ import java.util.Random;
  */
 
 public class Joueur implements Util {
-
-    private String nom;
     private int nombreDePartiesJouees = 0;
     private double pourcentagePartiesGagnees;
     private int nombrePartiesGagnees = 0;
     private int pourcentageChangementDePortes;
 
-    public Joueur(String nom) {
-        setNom(nom);
-    }
 
     public Joueur(int pourcentageChangementDePortes) {
         this.pourcentageChangementDePortes = pourcentageChangementDePortes;
@@ -58,22 +53,8 @@ public class Joueur implements Util {
         return nombrePartiesGagnees;
     }
 
-
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public int getNombreDePartiesJouees() {
         return nombreDePartiesJouees;
-    }
-
-    public void setNombreDePartiesJouees(int nombreDePartiesJouees) {
-        this.nombreDePartiesJouees = nombreDePartiesJouees;
     }
 
     public double getpourcentageChangementDePortes() {
@@ -82,10 +63,5 @@ public class Joueur implements Util {
 
     public double getPourcentagePartiesGagnees() {
         return pourcentagePartiesGagnees;
-    }
-
-    @Override
-    public String toString() {
-        return "Game.Joueur :" + getNom() + ". Nombre de parties jouées : " + nombreDePartiesJouees + ". Pourcentage de parties gagnées : " + pourcentagePartiesGagnees + ". Pourcentage de changement de portes : " + pourcentageChangementDePortes + ".";
     }
 }
