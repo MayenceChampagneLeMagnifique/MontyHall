@@ -7,11 +7,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Jeu implements Util {
     private List<Joueur> listeJoueurs = new ArrayList<>();
-    private List<Partie> listeParties = new ArrayList<>();
 
     public Jeu() {
         System.out.println("Bienvenue au problème de Monty Hall !" + "\n");
@@ -46,7 +44,6 @@ public class Jeu implements Util {
             writer.println("PourcentageChangement,NombreParties,NombreVictoires,PourcentageVictoires");
 
             for (Joueur joueur : listeJoueurs) {
-                joueur.calculerPourcentagePartiesGagnees();
                 writer.println(
                         joueur.getpourcentageChangementDePortes() + "," +
                                 joueur.getNombreDePartiesJouees() + "," +

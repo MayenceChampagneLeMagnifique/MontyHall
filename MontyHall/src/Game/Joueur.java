@@ -6,7 +6,7 @@ import java.util.Random;
  * Cette classe permet de créer un joueur
  */
 
-public class Joueur implements Util {
+public class Joueur {
     private int nombreDePartiesJouees = 0;
     private double pourcentagePartiesGagnees;
     private int nombrePartiesGagnees = 0;
@@ -38,15 +38,6 @@ public class Joueur implements Util {
         }
 
         nombreDePartiesJouees++;
-        calculerPourcentagePartiesGagnees();
-    }
-
-    public void calculerPourcentagePartiesGagnees() {
-        if (nombreDePartiesJouees > 0) {
-            pourcentagePartiesGagnees = ((double) nombrePartiesGagnees / nombreDePartiesJouees) * 100;
-        } else {
-            pourcentagePartiesGagnees = 0;
-        }
     }
 
     public int getNombrePartiesGagnees() {
@@ -62,6 +53,12 @@ public class Joueur implements Util {
     }
 
     public double getPourcentagePartiesGagnees() {
+        if (nombreDePartiesJouees > 0) {
+            pourcentagePartiesGagnees = ((double) nombrePartiesGagnees / nombreDePartiesJouees) * 100;
+        } else {
+            pourcentagePartiesGagnees = 0;
+        }
+
         return pourcentagePartiesGagnees;
     }
 }
