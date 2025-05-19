@@ -8,9 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe principale représentant le jeu du problème de Monty Hall.
+ * Cette classe permet d'exécuter le jeu en mode manuel (joué par l'utilisateur)
+ * ou en mode automatique (simulation de parties par des joueurs virtuels).
+ * Les résultats peuvent être exportés dans un fichier CSV.
+ * Javadoc générée automatiquement par une intelligence artificielle (ChatGPT).
+ *
+ * @author IA
+ */
 public class Jeu implements Util {
     private List<Joueur> listeJoueurs = new ArrayList<>();
 
+    /**
+     * Constructeur de la classe Jeu.
+     * Affiche les règles du problème de Monty Hall, puis demande à l'utilisateur
+     * de choisir entre le mode manuel ou automatique.
+     */
     public Jeu() {
         System.out.println("Bienvenue au problème de Monty Hall !" + "\n");
 
@@ -34,6 +48,11 @@ public class Jeu implements Util {
         }
     }
 
+    /**
+     * Exporte les résultats des joueurs automatiques dans un fichier CSV.
+     *
+     * @param path Chemin du fichier dans lequel exporter les résultats.
+     */
     public void exporterResultats(String path) {
         if (listeJoueurs.isEmpty()) {
             System.out.println("Aucun joueur à exporter.");
@@ -58,6 +77,12 @@ public class Jeu implements Util {
         }
     }
 
+    /**
+     * Mode de jeu automatique.
+     * L'utilisateur peut créer plusieurs joueurs avec des pourcentages de changement de porte,
+     * puis simuler un nombre défini de parties pour chacun d'eux.
+     * Les résultats sont exportés automatiquement.
+     */
     public void jouerPartiesAuto() {
         listeJoueurs = new ArrayList<>();
         int choix = 0;
@@ -83,11 +108,18 @@ public class Jeu implements Util {
                 j.jouerPartieAuto();
             }
         }
+
         String fSep = File.separator;
         String path = "MontyHall" + fSep + "src" + fSep + "Export" + fSep + "donnees.csv";
         exporterResultats(path);
     }
 
+    /**
+     * Mode de jeu manuel.
+     * L'utilisateur joue une partie en choisissant une porte, puis décide
+     * s'il souhaite changer ou non après qu'une porte vide soit révélée.
+     * Le résultat est ensuite affiché, et on propose de rejouer.
+     */
     public void jouerPartieManuellement() {
         Random r = new Random();
         Partie partie = new Partie();
@@ -143,6 +175,10 @@ public class Jeu implements Util {
         }
     }
 
+    /**
+     * Point d’entrée de l’application. Instancie une partie de Monty Hall.
+     *
+     */
     public static void main(String[] args) {
         new Jeu();
     }
